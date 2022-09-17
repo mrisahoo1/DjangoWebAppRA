@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from time_series import views
+from time_series import views as t_views
+from chart_graph import views as c_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.data_entry)
+    path('', t_views.data_entry),
+    # path('view-data/', c_views.HomeView.as_view()),
+    path('api', c_views.ChartData.as_view()),
 ]

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+</head>
+<body>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <label for="eq">Choose an equity:</label>
+
+<select name="eq" id="eq">
+  <option value="10277">Agilent Technologies Inc</option>
+  <option value="10278">Alcoa Inc</option>
+  <option value="10279">Yahoo! Inc </option>
+  <option value="10280">American Addiction Centers</option>
+  <option value="10281">American Airlines Group Inc </option>
+  <option value="10282">Altisource Asset Management Corp</option>
+  <option value="10283">Atlantic American Corp </option>
+  <option value="10284">Aaron's, Inc </option>
+  <option value="10285">Applied Optoelectronics Inc </option>
+  <option value="10286">AAON, Inc </option>
+</select>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
