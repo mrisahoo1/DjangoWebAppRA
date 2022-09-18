@@ -1,9 +1,13 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
-from .models import DailyReturns, Equities
+from .models import DailyReturns, Equities, Document
+from .forms import DocumentForm
 import csv
 import matplotlib
 import matplotlib.pyplot as plt
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 def data_entry(request):
@@ -106,3 +110,26 @@ def show_equities(request):
         'eq': equities[request.session['selected_eq']]
     }
     return render(request, 'display-records.html', context=context)
+
+
+def list_(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('list'))
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render(request,
+        'list.html',
+        {'documents': documents, 'form': form}
+    )

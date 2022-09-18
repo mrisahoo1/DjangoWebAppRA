@@ -41,3 +41,6 @@ class Equities(models.Model):
     image_name  = models.CharField(max_length=100)
     image_aspect_ratio = models.FloatField()
     cumulative_return_update = models.CharField(max_length=100)
+
+class Document(models.Model):
+    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
