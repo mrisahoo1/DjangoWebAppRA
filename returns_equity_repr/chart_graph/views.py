@@ -10,7 +10,7 @@ from time_series.models import DailyReturns
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         print(request.POST)
-        return render(request, 'index1.html')
+        return render(request, 'chart.html')
    
    
 

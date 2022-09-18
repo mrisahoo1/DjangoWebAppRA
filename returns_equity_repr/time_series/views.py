@@ -82,6 +82,27 @@ def data_entry(request):
         }
         # print(request.session['selected_eq'])
         context = {
-            'eq': equities[request.session['selected_eq']]
+            'eq': equities[request.session['selected_eq']],
         }
-        return render(request, 'index1.html', context=context)
+        return render(request, 'chart.html', context=context)
+
+
+def show_equities(request):
+    records = DailyReturns.objects.filter(equity_id=request.session['selected_eq']).order_by('date').values() 
+    equities = {
+            '10277':'Agilent Technologies Inc',
+            '10278':'Alcoa Inc', 
+            '10279':'Yahoo! Inc' ,
+            '10280':'American Addiction Centers',
+            '10281':'American Airlines Group Inc', 
+            '10282':'Altisource Asset Management Corp',
+            '10283':'Atlantic American Corp', 
+            '10284':"Aaron's, Inc",
+            '10285':'Applied Optoelectronics Inc',
+            '10286':"AAON, Inc" 
+        }
+    context = {
+        'records': records,
+        'eq': equities[request.session['selected_eq']]
+    }
+    return render(request, 'display-records.html', context=context)

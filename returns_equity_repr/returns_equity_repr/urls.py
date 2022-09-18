@@ -21,6 +21,6 @@ from chart_graph import views as c_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', t_views.data_entry),
-    # path('view-data/', c_views.HomeView.as_view()),
     path('api', c_views.ChartData.as_view()),
+    path('equity-data', t_views.show_equities)
 ]
